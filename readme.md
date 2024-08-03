@@ -8,3 +8,16 @@ Linuxコンテナを用いることで、独立した複数のLinux環境を稼�
 - Control Group
 - File System
 
+## 実行
+コンテナ起動
+```
+docker compose up -d
+```
+コンテナ内に入る(Linux環境)
+```
+docker compose exec app bash
+```
+
+## 参考文献
+https://zenn.dev/bloomer/articles/5fd4e929fdb77a<br>
+https://kaminashi-developer.hatenablog.jp/entry/dive-into-swamp-container-scratch
