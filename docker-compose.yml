@@ -4,5 +4,5 @@ services:
     build: .
     tty: true
     volumes:
-      - .:/app
+      - .:/app # マウントにより、ホストのファイルとコンテナのファイルが共有される
     privileged: true
