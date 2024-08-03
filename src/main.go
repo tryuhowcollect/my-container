@@ -28,9 +28,9 @@ func run() {
 	cmd := exec.Command("/proc/self/exe", append([]string{"child"}, os.Args[2:]...)...)
 	// 新しいプロセスの標準入力、標準出力、標準エラー出力を現在のプロセスに接続
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
-	// 3つのnamespaceを作成(Mount, UTS, PID)
+	// 4つのnamespaceを作成(Mount, UTS, PID, NET)
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID,
+		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS | syscall.CLONE_NEWNET,
 	}
 	// 3つのnamespaceの中で新しいプロセスを実行
 	if err := cmd.Run(); err != nil {
