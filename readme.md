@@ -35,10 +35,20 @@ go build -o my_container main.go
 - `syscall.CLONE_NEWNS`を消すと、一時ファイルのマウントがホストにまで及んでしまう<br>
 →この名前空間のプロセスは独自のマウント名前空間を持つ
 
+- `syscall.CLONE_NEWNET`を消すと、コンテナ内のネットワーク設定がホストと共有されてしまう<br>
+→この名前空間のプロセスは独自のネットワーク名前空間を持つ
+
 これらの名前空間を使用したプロセスは、コンテナ機能を実現するための必要条件である。<br>
-他にも、プロセスに対しネットワーク名前空間やcgroup等も必要。
+他にも、プロセスに対しcgroup等も必要。
+
+## コンテナとネットワーク名前空間
+- ホスト側をveth0-host、コンテナ側をveth0-ctとする
+- netns01というネットワーク名前空間を作成し、veth0-ctをnetns01に移動
+- それぞれのペアにIPアドレスを設定し、ペアがお互いに異なるネットワーク名前空間に存在する場合、pingが通る
+
 
 
 ## 参考文献
 https://zenn.dev/bloomer/articles/5fd4e929fdb77a<br>
-https://kaminashi-developer.hatenablog.jp/entry/dive-into-swamp-container-scratch
+https://kaminashi-developer.hatenablog.jp/entry/dive-into-swamp-container-scratch<br>
+https://gihyo.jp/admin/serial/01/linux_containers/0006
