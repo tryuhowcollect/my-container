@@ -22,7 +22,7 @@ func main() {
 }
 
 func run() {
-	fmt.Printf("Running %v\n", os.Args[2:])
+	fmt.Printf("Running %v parent\n", os.Args[2:])
 	cmd := exec.Command("/proc/self/exe", append([]string{"child"}, os.Args[2:]...)...)
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
@@ -34,7 +34,7 @@ func run() {
 }
 
 func child() {
-	fmt.Printf("Running %v\n", os.Args[2:])
+	fmt.Printf("Running %v child\n", os.Args[2:])
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
 
