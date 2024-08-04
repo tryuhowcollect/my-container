@@ -8,6 +8,20 @@ Linuxコンテナを用いることで、独立した複数のLinux環境を稼�
 - Control Group
 - File System
 
+## 名前空間について
+プロセスをグループ化し、コンテナの隔離された空間を作り出す<br>
+以下のように、独立させたいリソースごとに名前空間が存在する:
+
+
+| 名前空間の名前   | 隔離されるリソース | 対応するフラグ |
+| ------------ | ---------------- | ------------ |
+| マウント名前空間 |    マウント操作    |  syscall.CLONE_NEWNS |
+| UTS名前空間 |   ホスト名、ドメイン名   | syscall.CLONE_NEWUTS |
+| PID名前空間 |    プロセスID    | syscall.CLONE_NEWPID |
+| ネットワーク名前空間 |    ネットワーク関連    | syscall.CLONE_NEWNET |
+| ユーザ名前空間 |    UID, GID    | syscall.CLONE_NEWUSER |
+
+
 ## 実行
 コンテナ起動
 ```
