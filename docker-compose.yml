@@ -6,3 +6,4 @@ services:
     volumes:
       - .:/app # マウントにより、ホストのファイルとコンテナのファイルが共有される
     privileged: true
+    network_mode: host # ホストのネットワーク名前空間を使用

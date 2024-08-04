@@ -5,7 +5,7 @@ RUN yes | unminimize
 
 # 基本的なパッケージのインストール
 RUN apt-get update && \
-    apt-get install -y locales vim tmux less wget iproute2
+    apt-get install -y locales vim tmux less wget iproute2 iputils-ping
 
 # タイムゾーンとロケールの設定
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata 
